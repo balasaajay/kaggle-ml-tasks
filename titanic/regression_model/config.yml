@@ -1,0 +1,57 @@
+# Package Overview
+package_name: titanic_logres_model
+
+# Data Files
+training_data_file: train.csv
+test_data_file: test.csv
+
+# Variables
+# The variable we are attempting to predict (sale price)
+target: survived
+
+pipeline_name: titanic_logregression_model
+pipeline_save_file: titanic_logregression_model_output_v
+
+variables_convert_to_float:
+  - age
+  - fare
+
+features:
+  - pclass
+  - sex
+  - age
+  - sibsp
+  - parch
+  - fare
+  - cabin
+  - embarked
+  - title
+
+drop_features:
+  - name
+  - ticket
+  - boat
+  - body
+  - home.dest
+
+# set train/test split
+test_size: 0.15
+
+# to set the random seed
+random_state: 0
+
+alpha: 0.005
+
+# categorical variables with NA in train set
+categorical_vars:
+  - sex
+  - embarked
+  - cabin
+  - title
+
+numerical_vars:
+  - age
+  - fare
+
+cabin_vars:
+  - cabin
