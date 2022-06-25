@@ -8,8 +8,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from regression_model.config.core import config
-from regression_model.processing import features as rp
+from titanic_model.config.core import config
+from titanic_model.processing import features as rp
 
 # set up the pipeline
 titanic_pipe = Pipeline(
@@ -53,12 +53,12 @@ titanic_pipe = Pipeline(
         (
             "categorical_encoder",
             OneHotEncoder(
-                 drop_last=True, variables=config.model_config.categorical_vars
+                drop_last=True, variables=config.model_config.categorical_vars
             ),
         ),
         # scale using standardization
         ("scaler", StandardScaler()),
         # logistic regression (use C=0.0005 and random_state=0)
-        ("Logit", LogisticRegression(C=0.0005, random_state=0)),
+        ("Logit", LogisticRegression(C=config.model_config.alpha, random_state=config.model_config.random_state)),
     ]
 )

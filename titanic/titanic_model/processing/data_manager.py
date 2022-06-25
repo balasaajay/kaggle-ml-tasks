@@ -1,15 +1,16 @@
+import re
 import typing as t
 from pathlib import Path
 
 import joblib
-import re
 import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
-from regression_model import __version__ as _version
-from regression_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
-from regression_model.processing import features as rp
+from titanic_model import __version__ as _version
+from titanic_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
+from titanic_model.processing import features as rp
+
 
 def get_first_cabin(row: t.Any) -> t.Union[str, float]:
     try:
@@ -32,8 +33,8 @@ def get_title(passenger: str) -> str:
     else:
         return "Other"
 
-def load_dataset(*, file_name: str) -> pd.DataFrame:
-    dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))
+def process_df(dataframe: pd.DataFrame) -> pd.DataFrame:
+    dataframe = dataframe.copy()
     dataframe = dataframe.replace("?", np.nan)
     dataframe["cabin"] = dataframe["cabin"].apply(get_first_cabin)
     dataframe["title"] = dataframe["name"].apply(get_title)
@@ -42,6 +43,10 @@ def load_dataset(*, file_name: str) -> pd.DataFrame:
     dataframe.drop(labels=config.model_config.drop_features, axis=1, inplace=True)
     return dataframe
 
+def load_dataset(file_name: str) -> pd.DataFrame:
+    dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))
+    dataframe = process_df(dataframe)
+    return dataframe
 
 def save_pipeline(*, pipeline_to_persist: Pipeline) -> None:
     """Persist the pipeline.

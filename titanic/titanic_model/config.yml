@@ -35,12 +35,12 @@ drop_features:
   - home.dest
 
 # set train/test split
-test_size: 0.15
+test_size: 0.1
 
 # to set the random seed
 random_state: 0
 
-alpha: 0.005
+alpha: 0.0005
 
 # categorical variables with NA in train set
 categorical_vars:

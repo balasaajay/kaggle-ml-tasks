@@ -4,10 +4,10 @@ from typing import Dict, List, Sequence
 from pydantic import BaseModel
 from strictyaml import YAML, load
 
-import regression_model
+import titanic_model
 
 # Project Directories
-PACKAGE_ROOT = Path(regression_model.__file__).resolve().parent
+PACKAGE_ROOT = Path(titanic_model.__file__).resolve().parent
 ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
@@ -35,12 +35,12 @@ class ModelConfig(BaseModel):
     test_size: float
     random_state: int
     alpha: float
-    variables_convert_to_float: List[str]
-    features: List[str]
-    drop_features: List[str]
-    categorical_vars: List[str]
-    numerical_vars: List[str]
-    cabin_vars: List[str]
+    variables_convert_to_float: Sequence[str]
+    features: Sequence[str]
+    drop_features: Sequence[str]
+    categorical_vars: Sequence[str]
+    numerical_vars: Sequence[str]
+    cabin_vars: Sequence[str]
 
 
 class Config(BaseModel):
