@@ -6,8 +6,7 @@ Model developed and structured based on learnings from https://www.udemy.com/cou
 cd to a model directory and run below commands
 
 ### Requirements:
-  - Install tox using pip
-            pip install tox
+        pip install tox
 
 ### Install dependencies and to train a model:
         tox -e train
