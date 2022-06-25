@@ -7,7 +7,7 @@ cd to a model directory and run below commands
 
 ### Requirements:
   - Install tox using pip
-        pip install tox
+            pip install tox
 
 ### Install dependencies and to train a model:
         tox -e train
@@ -15,16 +15,18 @@ cd to a model directory and run below commands
 ### Run linter
         tox -e lint
 
+### To train, run linter and stylechecks
+        tox
+
 ## Titanic
-Used - Logistic regression to build the model.
-URL: https://www.kaggle.com/datasets/heptapod/titanic
-Dataset: https://www.openml.org/data/get_csv/16826755/phpMYEkMl
+- Logistic regression to build the model.
+- URL: https://www.kaggle.com/datasets/heptapod/titanic
+- Dataset: https://www.openml.org/data/get_csv/16826755/phpMYEkMl
 
 
 # ML Pipelines Overview:
 
-Data (reproducible -> R) --> Data Analysis --> Data Pre-processing(R) --> Variable Selection(R) --> ML model building(R) --> Model deploy(R)
-                                               (Feature Engineering)       (Feature Selection)
+Data (reproducible -> R) --> Data Analysis --> Data Pre-processing(R) (Feature Engineering) --> Variable Selection(R)(Feature Selection) --> ML model building(R) --> Model deploy(R)
 
-Data Layer --> Feature layer --> Scoring layer --> Evaluation layer 
-(base)
+Data Layer(base) --> Feature layer --> Scoring layer --> Evaluation layer 
+

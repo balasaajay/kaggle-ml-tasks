@@ -33,6 +33,7 @@ def get_title(passenger: str) -> str:
     else:
         return "Other"
 
+
 def process_df(dataframe: pd.DataFrame) -> pd.DataFrame:
     dataframe = dataframe.copy()
     dataframe = dataframe.replace("?", np.nan)
@@ -43,10 +44,12 @@ def process_df(dataframe: pd.DataFrame) -> pd.DataFrame:
     dataframe.drop(labels=config.model_config.drop_features, axis=1, inplace=True)
     return dataframe
 
+
 def load_dataset(file_name: str) -> pd.DataFrame:
     dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))
     dataframe = process_df(dataframe)
     return dataframe
+
 
 def save_pipeline(*, pipeline_to_persist: Pipeline) -> None:
     """Persist the pipeline.

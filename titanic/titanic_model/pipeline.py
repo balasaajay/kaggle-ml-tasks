@@ -59,6 +59,12 @@ titanic_pipe = Pipeline(
         # scale using standardization
         ("scaler", StandardScaler()),
         # logistic regression (use C=0.0005 and random_state=0)
-        ("Logit", LogisticRegression(C=config.model_config.alpha, random_state=config.model_config.random_state)),
+        (
+            "Logit",
+            LogisticRegression(
+                C=config.model_config.alpha,
+                random_state=config.model_config.random_state,
+            ),
+        ),
     ]
 )
