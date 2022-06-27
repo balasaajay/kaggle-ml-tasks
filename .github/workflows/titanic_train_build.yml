@@ -64,6 +64,7 @@ jobs:
     - name: Build the model
       run: |
         cd titanic
+        pip install build
         python -m build
     - name: Publish packages
       uses: actions/upload-artifact@v3.1.0
