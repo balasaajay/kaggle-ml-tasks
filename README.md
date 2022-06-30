@@ -17,6 +17,9 @@ cd to a model directory and run below commands
 ### To train, run linter and stylechecks
         tox
 
+### To build .whl package
+        python -m build
+
 ## Titanic
 - Logistic regression to build the model.
 - URL: https://www.kaggle.com/datasets/heptapod/titanic

@@ -5,7 +5,7 @@ import pandas as pd
 from pydantic import BaseModel, ValidationError
 
 from titanic_model.config.core import config
-from titanic_model.data_manager import process_df
+from titanic_model.processing.data_manager import process_df
 
 
 def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[dict]]:

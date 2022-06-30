@@ -6,7 +6,7 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 # Package meta-data.
-NAME = 'titanic-regression-model'
+NAME = 'titanic-logres-model'
 DESCRIPTION = "Example trained log regression model"
 URL = "https://github.com/balasaajay/kaggle-ml-tasks"
 EMAIL = "balasaajay@gmail.com"
