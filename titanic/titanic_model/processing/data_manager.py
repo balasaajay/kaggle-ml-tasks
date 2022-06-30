@@ -41,7 +41,9 @@ def process_df(dataframe: pd.DataFrame) -> pd.DataFrame:
     dataframe["title"] = dataframe["name"].apply(get_title)
     dataframe["fare"] = dataframe["fare"].astype("float")
     dataframe["age"] = dataframe["age"].astype("float")
-    dataframe.drop(labels=config.model_config.drop_features, axis=1, inplace=True)
+    dataframe.drop(
+        labels=config.model_config.drop_features, axis=1, inplace=True, errors="ignore"
+    )
     return dataframe
 
 
