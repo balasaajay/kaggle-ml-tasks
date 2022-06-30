@@ -20,6 +20,14 @@ cd to a model directory and run below commands
 ### To build .whl package
         python -m build
 
+### Using fastAPI and uvicorn to run the ml model api
+        cd ml_api
+        pip install -r requirements.txt
+        pip install titanic_logres_model-0.0.1-py3-none-any.whl   # Install Titanic model wheel package
+        uvicorn main:app      # start the server
+
+#### Open the browser and navigate to http://127.0.0.1:8000/docs for accessing the APIs
+
 ## Titanic
 - Logistic regression to build the model.
 - URL: https://www.kaggle.com/datasets/heptapod/titanic
@@ -31,4 +39,3 @@ cd to a model directory and run below commands
 Data (reproducible -> R) --> Data Analysis --> Data Pre-processing(R) (Feature Engineering) --> Variable Selection(R)(Feature Selection) --> ML model building(R) --> Model deploy(R)
 
 Data Layer(base) --> Feature layer --> Scoring layer --> Evaluation layer 
-
