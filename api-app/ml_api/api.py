@@ -42,9 +42,8 @@ async def predict(input_data: schemas.MultiplePeopleDataInputs) -> Any:
         logger.warning(f"Prediction validation error: {results.get('errors')}")
         raise HTTPException(status_code=400, detail=json.loads(results["errors"]))
 
-    if results.get('predictions'):
+    if results.get('predictions') != None:
         results['predictions'] = results.get('predictions').tolist()
 
     logger.info(f"Prediction results: {results.get('predictions')}")
-
     return results
