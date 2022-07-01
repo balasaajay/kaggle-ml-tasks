@@ -1,0 +1,11 @@
+---
+version: '3'
+services:
+  tf-server:
+    image: tensorflow/serving:latest
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./customer_sentiment_model/:/models/customer_sentiment_model
+    environment:
+      - MODEL_NAME=customer_sentiment_model

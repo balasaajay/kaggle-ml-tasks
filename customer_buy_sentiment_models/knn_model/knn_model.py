@@ -20,7 +20,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 # print(X_train, X_test)
 
-# Scale the train and test data
+# Feature scale the train and test data
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
