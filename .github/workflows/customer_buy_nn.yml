@@ -1,0 +1,60 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Train and Build NN model
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build_train_tf_keras_model:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.8"
+    - name: Install dependencies
+      run: |
+        cd customer_buy_sentiment_models
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Build and train the NN
+      run: |
+        cd customer_buy_sentiment_models/tf_keras_serving_model
+        python tf_keras_model.py
+    - name: Validate NN
+      run: |
+        cd customer_buy_sentiment_models/tf_keras_serving_model
+        python validation.py
+
+
+  build_train_pytorch_model:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.8"
+    - name: Install dependencies
+      run: |
+        cd customer_buy_sentiment_models
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Build and train pytorch NN
+      run: |
+        cd customer_buy_sentiment_models/nn_pytorch
+        python pytorch_model.py
+

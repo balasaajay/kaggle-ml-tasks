@@ -7,7 +7,7 @@ NN Model in this section is implemented using tensorflow and Keras. Model is sav
 ## Build and deploy commands
 
 ### To build and save the model
-        python tf_keras_serving.py
+        python tf_keras_model.py
 
 This will generate the pb file of model, trained weights.
 
