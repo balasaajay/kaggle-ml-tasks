@@ -25,16 +25,16 @@ jobs:
         python-version: "3.8"
     - name: Install dependencies
       run: |
-        cd customer_buy_sentiment_models
+        cd customer_behavior
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build and train the NN
       run: |
-        cd customer_buy_sentiment_models/tf_keras_serving_model
+        cd customer_behavior/tf_keras_serving_model
         python tf_keras_model.py
     - name: Validate NN
       run: |
-        cd customer_buy_sentiment_models/tf_keras_serving_model
+        cd customer_behavior/tf_keras_serving_model
         python validation.py
 
 
@@ -50,11 +50,10 @@ jobs:
         python-version: "3.8"
     - name: Install dependencies
       run: |
-        cd customer_buy_sentiment_models
+        cd customer_behavior
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build and train pytorch NN
       run: |
-        cd customer_buy_sentiment_models/nn_pytorch
+        cd customer_behavior/nn_pytorch
         python pytorch_model.py
-
