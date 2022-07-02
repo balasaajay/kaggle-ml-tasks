@@ -1,6 +1,6 @@
 # ML Models
-Contains code to build, train and package a model.
-Model developed and structured based on learnings from https://www.udemy.com/course/deployment-of-machine-learning-models/
+Contains code to build, train, package and deploy a model.
+
 
 # ML Pipelines Overview:
 
@@ -37,3 +37,8 @@ Data Layer(base) --> Feature layer --> Scoring layer --> Evaluation layer
 - Opensource app for ML lifecycle management
 - MLflow is an open source platform to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry. 
 - https://mlflow.org/
+
+# References:
+Models are developed and structured based on learnings from:
+- https://www.udemy.com/course/deployment-of-machine-learning-models/ 
+- https://www.udemy.com/course/machine-learning-deep-learning-model-deployment/
