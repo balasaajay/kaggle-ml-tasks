@@ -1,0 +1,11 @@
+---
+version: '3'
+services:
+  tf-server:
+    image: tensorflow/serving:latest
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./restaurant_reviews_model/:/models/restaurant_reviews_model 
+    environment:
+      - MODEL_NAME=restaurant_reviews_model

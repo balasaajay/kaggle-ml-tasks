@@ -1,4 +1,5 @@
 import tensorflow as tf
+import tensorflowjs as tfjs
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -57,3 +58,6 @@ model.save('customer_sentiment_model/1') # saves model in protobuf format
 # Save scaler in pickle file
 scaler_file = "sc.pickle"
 pickle.dump(sc, open(scaler_file, 'wb'))
+
+# Save the model as tfjs model
+tfjs.converters.save_keras_model(model, "./content/")

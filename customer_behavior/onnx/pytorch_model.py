@@ -33,9 +33,9 @@ X_test = sc.transform(X_test)
 
 # Convert data to pytorch tensor format
 X_train_tensor = torch.from_numpy(X_train).float()
-X_test_tensor = torch.from_numpy(X_test).long()
-y_train_tensor = torch.from_numpy(y_train).long()
-y_test_tensor = torch.from_numpy(y_test).long()
+X_test_tensor = torch.from_numpy(X_test).float()
+y_train_tensor = torch.from_numpy(y_train)
+y_test_tensor = torch.from_numpy(y_test)
 # print(X_train_tensor.shape, y_train_tensor.shape)
 
 # Construct Neural network

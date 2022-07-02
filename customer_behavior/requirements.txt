@@ -11,3 +11,4 @@ keras
 pathlib
 onnx
 onnx_tf
+tensorflowjs

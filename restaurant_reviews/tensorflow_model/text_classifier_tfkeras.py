@@ -2,15 +2,16 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 import re
+import pickle
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+
+import tensorflow as tf
 
 import nltk
 # Needed only first time to download all nltk libs
-nltk.download('all')
+# nltk.download('all')
 
 # stop words: Get rid of stop words (a, the, is, ...) since they dont help us in predicting
 # Stemming:  to get the root words (Ex: running, run -> run; totally, total -> total) - this will limit the number of words
@@ -18,7 +19,7 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
 # Read data from the dataset
-data = pd.read_csv(Path(f"dataset/Restaurant_Reviews.tsv"), delimiter='\t', quoting=3)
+data = pd.read_csv(Path(f"../dataset/Restaurant_Reviews.tsv"), delimiter='\t', quoting=3)
 # dataset is tab seperated
 # quoting=3 to ignore double quotes
 
@@ -67,28 +68,43 @@ X_train, X_test, y_train, y_test = train_test_split(
   random_state = 0
 )
 
-# Build model using KNN classifier
-model = KNeighborsClassifier(n_neighbors=5, p=2, leaf_size=30) # Use default classifier params
+# Construct Neural network
+input_size = 150   # columns from above size
+output_size = 2  # positive or negative
+hidden_layer_size = 500  # neurons in each NN layer
+
+# Build model using tf.keras models Sequential class
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Dense(hidden_layer_size, activation='relu'),
+  tf.keras.layers.Dense(hidden_layer_size, activation='relu'),
+  tf.keras.layers.Dense(output_size, activation='softmax') # Output size = 2
+])
+
+# set optimizer and loss functions
+model.compile(optimizer='adam', 
+              loss = 'sparse_categorical_crossentropy',
+              metrics = ['accuracy'])
 
 # Train the model
-model.fit(X_train, y_train)
+model.fit(X_train, y_train, epochs = 200)
 
-# Predict using trained model
-y_pred = model.predict(X_test)
-y_pred_probability = model.predict_proba(X_test)[:, 1]
-# print(y_pred_probability)
+# Collect model metrics
+loss, accuracy = model.evaluate(X_test, y_test)
+
 print("Model trained!")
-# Model metrics:
+# Dictionary and Vectorizer pickle files can be used to load the model and serve as API
 
-# 1. Using Confusion Matrix 
-cm = confusion_matrix(y_test, y_pred)
-print("Confusion Matrix:")
-print(cm)
+# Save and server hte model using tf serving
+model.save('restaurant_reviews_model/1') # saves model in protobuf format
+# variables stores the weights of the models
 
-# 2. Model Accuracy:
-print("Model Accuracy:")
-print(accuracy_score(y_test, y_pred))
+# Save vectorizer in pickle file
+vectorizer_file = "tf-idf-vector-tfk.pickle"
+pickle.dump(vectorizer, open(vectorizer_file, 'wb'))
 
-# 3. classification Report:
-print("Classification Report:")
-print(classification_report(y_test, y_pred))
+# Validate the model
+test_input = ['very bad']
+test_input_vectorized = vectorizer.transform(test_input).toarray()
+y_test_pred = model(test_input_vectorized)[:, 1]
+print(y_test_pred)
+# very low number = negative sentiment

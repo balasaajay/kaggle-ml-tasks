@@ -25,14 +25,14 @@ jobs:
         python-version: "3.8"
     - name: Install dependencies
       run: |
-        cd restaurant_reviews
+        cd restaurant_reviews/knn_model
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build and train the NLP model
       run: |
-        cd restaurant_reviews
+        cd restaurant_reviews/knn_model
         python text_classifier_knn.py
     - name: Validate the NLP model
       run: |
-        cd restaurant_reviews
+        cd restaurant_reviews/knn_model
         python -m pytest validation.py
