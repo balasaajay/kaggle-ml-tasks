@@ -77,15 +77,18 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 y_pred_probability = model.predict_proba(X_test)[:, 1]
 # print(y_pred_probability)
-
+print("Model trained!")
 # Model metrics:
 
 # 1. Using Confusion Matrix 
 cm = confusion_matrix(y_test, y_pred)
-# print(cm)
+print("Confusion Matrix:")
+print(cm)
 
 # 2. Model Accuracy:
-# print(accuracy_score(y_test, y_pred))
+print("Model Accuracy:")
+print(accuracy_score(y_test, y_pred))
 
 # 3. classification Report:
-# print(classification_report(y_test, y_pred))
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
