@@ -21,7 +21,7 @@ data = pd.read_csv(Path(f"../dataset/storepurchasedata_large.csv"))
 X_train, X_test, y_train, y_test = train_test_split(
   data.iloc[:, :-1].values,
   data.iloc[:, -1].values,
-  test_size = 0.8,
+  test_size = 0.2,
   random_state = 0
 )
 # print(X_train, X_test)
