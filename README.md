@@ -21,3 +21,4 @@ Given customer details, this tensorflow-keras/pytorch neural network (with 2 hid
 ### Restaurant reviews
 Given a review, this NLP model based on K-NN predicts whether it is a poritive or not.
 Kaggel link - https://www.kaggle.com/datasets/d4rklucif3r/restaurant-reviews
+(Tests developed using pytest framework)
