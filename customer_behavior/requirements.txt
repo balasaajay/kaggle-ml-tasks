@@ -12,3 +12,4 @@ pathlib
 onnx
 onnx_tf
 tensorflowjs
+mlflow
